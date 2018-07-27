@@ -73,10 +73,3 @@ for i in range(m):
         print('Neural Network Prediction: ',  pred[0] )
         print('Digit: ', (pred[0] % 10) )
         
-
-
-
-
-
-
-
