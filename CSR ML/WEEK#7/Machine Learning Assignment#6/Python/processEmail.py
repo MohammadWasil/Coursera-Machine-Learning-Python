@@ -11,6 +11,11 @@ import numpy as np
 
 import re
 
+'''
+PS:- Install stemming algorithm, by typing the below in prompt.
+pip install stemming==1.0.1
+'''
+
 def GetVocabList():
     vocabulary={}
     with open(r'D:\ML\ML\CSR ML\WEEK#7\Machine Learning Assignment#6\Python\vocab.txt', 'r') as csvfile:
