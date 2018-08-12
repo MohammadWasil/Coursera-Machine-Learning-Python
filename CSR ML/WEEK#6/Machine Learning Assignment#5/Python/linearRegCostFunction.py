@@ -8,7 +8,7 @@ import numpy as np
 
 def linearRegCostFunction(X, y, theta, lambda_):
     [m, n] = X.shape
-    h = X.dot(theta)            # 12X1 
+    h = X.dot(theta)            # 12X1      #21X1 for Xtest.
 
     J = sum((h-y)**2) * (1 / (2 * m))   
     J_reg =  (lambda_ / (2 * m)) * np.sum(theta[1:] ** 2)

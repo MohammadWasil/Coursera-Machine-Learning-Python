@@ -125,9 +125,9 @@ X_poly, mu, sigma = pf.FeatureNormalize(X_poly)
 X_poly = np.concatenate(( np.ones(( X_poly.shape[0],1 )),X_poly ),axis=1)
 
 #Map X_poly_test and normalize (using mu and sigma)
-#X_poly_test = pf.PolyFeatures(Xtest, power)
-#X_poly_test = (X_poly_test - mu) / sigma
-#X_poly_test = np.concatenate(( np.ones(( X_poly_test.shape[0], 1 )), X_poly_test ))
+X_poly_test = pf.PolyFeatures(Xtest[:,1], power)
+X_poly_test = (X_poly_test - mu) / sigma
+X_poly_test = np.concatenate(( np.ones(( X_poly_test.shape[0], 1 )), X_poly_test ),axis=1)
 
 X_poly_val = pf.PolyFeatures(Xval[:, 1], power)
 X_poly_val = (X_poly_val - mu) / sigma
@@ -186,3 +186,16 @@ print('lambda\t\tTrain Error\tCross Validation Error')
 for i, lambda_ in enumerate(lambda_vec,0):
     print('%f\t%f\t%f' %(lambda_,error_train[i],error_cross_validation[i]))
 
+# Computing test error(Ungraded exercise)
+
+# To get a better indication of the models performance in the real world,
+# it is important to evaluate the final model on a test set that was 
+# not used in any part of training (that is, it was neither used to select the lambda
+# parameters, nor to learn the model parameters theta)
+
+lambda_=3
+theta = tlr.TrainLinearRegression(X_poly,y,lambda_)
+
+J, grad = lrcf.linearRegCostFunction(X_poly_test, ytest, theta, 0)
+print('In our cross validation, we obtained a test error of %f for lambda_ = 3 ' %J)
+print('This value of test error should be around 3.8599 for lambda_ = 3 ')
